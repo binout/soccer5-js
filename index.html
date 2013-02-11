@@ -27,15 +27,18 @@
                ng-repeat="match in matches.data">
             <thead>
             <tr name="head">
-                <th>{{match.dateStr}}</th>
+                <th><i class="icon-time"></i> {{match.dateStr}} <br/>
+                    <span ng-show="match.open"><font color="red">Missing {{match.missingPlayers}} players !</font></span>
+                    <span ng-show="match.full"><font color="green">The match is full !</font></span>
+                </th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="player in match.players">
-                <td>{{player.name}}</td>
+                <td><i class="icon-user"></i> {{player.name}}</td>
             </tr>
             <tr ng-repeat="guest in match.guests">
-                <td>{{guest}}</td>
+                <td><i class="icon-question-sign"></i> {{guest}}</td>
             </tr>
             </tbody>
         </table>
