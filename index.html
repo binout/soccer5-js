@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html ng-app>
+
 <head>
     <title>Soccer5 Registration</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
+    <link href="css/soccer5.css" rel="stylesheet"/>
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/angular.min.js"></script>
+    <script src="js/controller.js"></script>
 </head>
+
 <body>
+
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
             <a class="brand">Soccer 5</a>
-
             <div class="nav-collapse">
                 <ul class="nav">
                     <li class="active"><a>Calendar </a></li>
@@ -22,6 +26,7 @@
         </div>
     </div>
 </div>
+
 <br/><br/><br/>
 
 <div class='container' ng-controller="MatchCtrl">
@@ -29,15 +34,14 @@
         <div class="span1">&nbsp;
         </div>
         <div class="span11">&nbsp;
-            <h2 style="color:#f89406">Next Matches</h2>
+            <h2>Next Matches</h2>
             <table class="table table-striped table-bordered"
-                   ng-repeat="match in matches.data">
+                   ng-repeat="match in matches">
                 <thead>
                 <tr name="head">
                     <th><i class="icon-time"></i> {{match.dateStr}} <br/>
-                        <span ng-show="match.open"><font color="red">Missing {{match.missingPlayers}} players
-                            !</font></span>
-                        <span ng-show="match.full"><font color="green">The match is full !</font></span>
+                        <span class="open" ng-show="match.open">Missing {{match.missingPlayers}} players!</span>
+                        <span class="full" ng-show="match.full">The match is full !</span>
                     </th>
                 </tr>
                 </thead>
@@ -53,13 +57,6 @@
         </div>
     </div>
 </div>
+
 </body>
-<script>
-    function MatchCtrl($scope, $http) {
-        var url = "http://soccer-binout.rhcloud.com/soccer5/rest/match/next?callback=JSON_CALLBACK";
-
-        $scope.matches = $http.jsonp(url);
-
-    }
-</script>
 </html>
